@@ -10,6 +10,13 @@ import {
 	DialogDescription,
 	DialogTrigger
 } from "@/components/ui/dialog";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 interface BarProps {
 	value: number;
@@ -20,13 +27,15 @@ const BubbleSortVisualizer: React.FC = () => {
 	const [bars, setBars] = useState<BarProps[]>([]);
 	const [sorting, setSorting] = useState(false);
 	const [completed, setCompleted] = useState(false);
+	const [arraySize, setArraySize] = useState(10);
+	const [sortingSpeed, setSortingSpeed] = useState(100);
 
 	useEffect(() => {
 		generateRandomArray();
-	}, []);
+	}, [arraySize]);
 
 	const generateRandomArray = () => {
-		const newBars = Array.from({ length: 10 }, () => ({
+		const newBars = Array.from({ length: arraySize }, () => ({
 			value: Math.floor(Math.random() * 100) + 1,
 			state: "default" as const
 		}));
@@ -44,31 +53,25 @@ const BubbleSortVisualizer: React.FC = () => {
 
 		for (let i = 0; i < n - 1; i++) {
 			for (let j = 0; j < n - i - 1; j++) {
-				// Set comparing state
 				newBars[j].state = "comparing";
 				newBars[j + 1].state = "comparing";
 				setBars([...newBars]);
-				await sleep(200);
+				await sleep(sortingSpeed);
 
 				if (newBars[j].value > newBars[j + 1].value) {
-					// Set swapping state
 					newBars[j].state = "swapping";
 					newBars[j + 1].state = "swapping";
 					setBars([...newBars]);
-					await sleep(200);
+					await sleep(sortingSpeed);
 
-					// Swap elements
 					[newBars[j], newBars[j + 1]] = [newBars[j + 1], newBars[j]];
 				}
 
-				// Reset state to default
 				newBars[j].state = "default";
 				newBars[j + 1].state = "default";
 			}
-			// Set the last element as sorted
 			newBars[n - i - 1].state = "sorted";
 		}
-		// Set the first element as sorted
 		newBars[0].state = "sorted";
 
 		setBars([...newBars]);
@@ -96,19 +99,57 @@ const BubbleSortVisualizer: React.FC = () => {
 			</h1>
 			<div className="flex items-end justify-center h-64 mb-8">
 				{bars.map((bar, index) => (
-					<motion.div
-						key={index}
-						className={`w-8 mx-1 ${getBarColor(bar.state)} rounded-t-lg`}
-						style={{ height: `${bar.value * 2}px` }}
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: index * 0.1 }}
-					>
-						<div className="text-center text-xs">{bar.value}</div>
-					</motion.div>
+					<TooltipProvider key={index}>
+						<Tooltip>
+							<TooltipTrigger>
+								<motion.div
+									key={index}
+									className={cn(
+										`mx-0.5 ${getBarColor(bar.state)} rounded-t-lg`,
+										arraySize < 15 ? "w-6" : "w-2"
+									)}
+									style={{ height: `${bar.value * 2}px` }}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: index * 0.01 }}
+								/>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>{`Value: ${bar.value}`}</p>
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
 				))}
 			</div>
-			<div className="space-x-4">
+			<div className="space-y-4 w-full max-w-md">
+				<div className="flex items-center justify-between">
+					<label htmlFor="arraySize">Array Size: {arraySize}</label>
+					<input
+						type="range"
+						id="arraySize"
+						min="5"
+						max="100"
+						value={arraySize}
+						onChange={(e) => setArraySize(Number(e.target.value))}
+						disabled={sorting}
+						className="w-2/3"
+					/>
+				</div>
+				<div className="flex items-center justify-between">
+					<label htmlFor="sortingSpeed">Sorting Speed: {sortingSpeed}ms</label>
+					<input
+						type="range"
+						id="sortingSpeed"
+						min="10"
+						max="1000"
+						value={sortingSpeed}
+						onChange={(e) => setSortingSpeed(Number(e.target.value))}
+						disabled={sorting}
+						className="w-2/3"
+					/>
+				</div>
+			</div>
+			<div className="space-x-4 mt-4">
 				<button
 					className="px-4 py-2 bg-green-400 text-white rounded-full hover:bg-green-500 transition-colors duration-300"
 					onClick={bubbleSort}
