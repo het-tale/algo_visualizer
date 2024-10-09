@@ -1466,5 +1466,23 @@ c-1 38 1 73 4 78 10 16 -7 33 -23 23z m10 -20 c0 -5 -2 -10 -4 -10 -3 0 -8 5
 		>
 			<path d="M21 12a9 9 0 1 1-6.219-8.56" />
 		</svg>
+	),
+	mywebsite: (props: IconProps) => (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			{...props}
+		>
+			<circle cx="12" cy="12" r="10" />
+			<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+			<path d="M2 12h20" />
+		</svg>
 	)
 };

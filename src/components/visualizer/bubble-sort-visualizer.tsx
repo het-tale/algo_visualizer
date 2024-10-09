@@ -79,43 +79,45 @@ const BubbleSortVisualizer: React.FC = () => {
 	const getBarColor = (state: BarProps["state"]) => {
 		switch (state) {
 			case "comparing":
-				return "bg-red-500";
+				return "bg-yellow-400";
 			case "sorted":
-				return "bg-green-500";
+				return "bg-green-400";
 			case "swapping":
-				return "bg-purple-500";
+				return "bg-pink-500";
 			default:
-				return "bg-blue-500";
+				return "bg-blue-400";
 		}
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-			<h1 className="text-3xl font-bold mb-8">Bubble Sort Visualizer</h1>
+		<div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 text-white">
+			<h1 className="text-4xl font-bold mb-8 font-code">
+				&lt;Bubble Sort Visualizer /&gt;
+			</h1>
 			<div className="flex items-end justify-center h-64 mb-8">
 				{bars.map((bar, index) => (
 					<motion.div
 						key={index}
-						className={`w-8 mx-1 ${getBarColor(bar.state)}`}
+						className={`w-8 mx-1 ${getBarColor(bar.state)} rounded-t-lg`}
 						style={{ height: `${bar.value * 2}px` }}
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: index * 0.1 }}
 					>
-						<div className="text-center text-white">{bar.value}</div>
+						<div className="text-center text-xs">{bar.value}</div>
 					</motion.div>
 				))}
 			</div>
 			<div className="space-x-4">
 				<button
-					className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+					className="px-4 py-2 bg-green-400 text-white rounded-full hover:bg-green-500 transition-colors duration-300"
 					onClick={bubbleSort}
 					disabled={sorting || completed}
 				>
 					{sorting ? "Sorting..." : completed ? "Sorted!" : "Start Sorting"}
 				</button>
 				<button
-					className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+					className="px-4 py-2 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors duration-300"
 					onClick={generateRandomArray}
 					disabled={sorting}
 				>
@@ -123,14 +125,16 @@ const BubbleSortVisualizer: React.FC = () => {
 				</button>
 				<Dialog>
 					<DialogTrigger asChild>
-						<button className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+						<button className="px-4 py-2 bg-pink-400 text-white rounded-full hover:bg-pink-500 transition-colors duration-300">
 							How It Works
 						</button>
 					</DialogTrigger>
-					<DialogContent>
+					<DialogContent className="bg-white text-gray-800">
 						<DialogHeader>
-							<DialogTitle>Bubble Sort Tutorial</DialogTitle>
-							<DialogDescription>
+							<DialogTitle className="text-2xl font-bold">
+								Bubble Sort Tutorial
+							</DialogTitle>
+							<DialogDescription className="text-gray-600">
 								Bubble Sort is a simple sorting algorithm that repeatedly steps
 								through the list, compares adjacent elements and swaps them if
 								they are in the wrong order.
@@ -169,19 +173,19 @@ const BubbleSortVisualizer: React.FC = () => {
 				<h2 className="text-xl font-semibold mb-2">Color Legend</h2>
 				<div className="flex justify-center space-x-4">
 					<div className="flex items-center">
-						<div className="w-4 h-4 bg-blue-500 mr-2"></div>
+						<div className="w-4 h-4 bg-blue-400 mr-2 rounded"></div>
 						<span>Default</span>
 					</div>
 					<div className="flex items-center">
-						<div className="w-4 h-4 bg-red-500 mr-2"></div>
+						<div className="w-4 h-4 bg-yellow-400 mr-2 rounded"></div>
 						<span>Comparing</span>
 					</div>
 					<div className="flex items-center">
-						<div className="w-4 h-4 bg-purple-500 mr-2"></div>
+						<div className="w-4 h-4 bg-pink-500 mr-2 rounded"></div>
 						<span>Swapping</span>
 					</div>
 					<div className="flex items-center">
-						<div className="w-4 h-4 bg-green-500 mr-2"></div>
+						<div className="w-4 h-4 bg-green-400 mr-2 rounded"></div>
 						<span>Sorted</span>
 					</div>
 				</div>

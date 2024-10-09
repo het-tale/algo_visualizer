@@ -24,7 +24,7 @@ const DynamicThemeAwareContent = dynamic(
 
 export default function Footer() {
 	return (
-		<footer className="flex flex-col dark:bg-white dark:text-black p-2 gap-6 bg-zinc-950 text-white">
+		<footer className="flex flex-col bg-transparent p-2 gap-6 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 text-white">
 			<p className="text-sm self-center">
 				Made with <DynamicThemeAwareContent />
 				By Hasnaa Et-taleby

@@ -14,17 +14,17 @@ export default function SocialAccounts() {
 	const accounts: { name: string; icon: ReactNode; link: string }[] = [
 		{
 			name: "GitHub",
-			icon: <Icons.gitHub className="w-6 h-6" />,
+			icon: <Icons.gitHub className="w-6 h-6 text-white" />,
 			link: "https://github.com/het-tale"
 		},
 		{
 			name: "Twitter",
-			icon: <Icons.twitter className="w-6 h-6" />,
-			link: "https://x.com/het_tale"
+			icon: <Icons.mywebsite className="w-6 h-6 text-white" />,
+			link: "https://www.het-tale.me/"
 		},
 		{
 			name: "LinkedIn",
-			icon: <Icons.linkedin className="w-6 h-6" />,
+			icon: <Icons.linkedin className="w-6 h-6 text-white" />,
 			link: "https://www.linkedin.com/in/hasnaa-et-taleby/"
 		}
 	];

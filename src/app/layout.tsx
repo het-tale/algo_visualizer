@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={cn(inter.className, "dark:bg-zinc-950")}>
+			<body className={cn(inter.className)}>
 				<ReactQueryProvider>
 					<ThemeProvider
 						attribute="class"
