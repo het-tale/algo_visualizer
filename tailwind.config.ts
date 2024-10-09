@@ -18,6 +18,13 @@ const config = {
 			}
 		},
 		extend: {
+			fontFamily: {
+				code: ["Fira Code", "monospace"],
+				sans: ["Inter", "sans-serif"],
+				bubble: ["Pacifico", "cursive"],
+				quick: ["Roboto Mono", "monospace"],
+				merge: ["Merriweather", "serif"]
+			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
