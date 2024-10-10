@@ -2,7 +2,7 @@
 
 import { BarProps } from "../visualizer/bubble-sort-visualizer";
 
-interface BubbleSortProps {
+export interface BubbleSortProps {
 	setSorting: React.Dispatch<React.SetStateAction<boolean>>;
 	setBars: React.Dispatch<React.SetStateAction<BarProps[]>>;
 	bars: BarProps[];
