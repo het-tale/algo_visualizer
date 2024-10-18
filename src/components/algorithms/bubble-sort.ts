@@ -9,7 +9,8 @@ export interface BubbleSortProps {
 	sortingSpeed: number;
 	setCompleted: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const sleep = (ms: number) =>
+	new Promise((resolve) => setTimeout(resolve, ms));
 
 export const bubbleSort = async ({
 	setSorting,
