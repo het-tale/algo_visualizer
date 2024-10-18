@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Algorithm Visualizer",
-	description: "Visualize algorithms in action"
+	description: "Visualize algorithms in action",
+	icons: { icon: "/logo.svg" }
 };
 
 export default function RootLayout({
