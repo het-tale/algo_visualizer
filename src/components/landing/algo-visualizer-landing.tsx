@@ -24,9 +24,9 @@ const algorithms = [
 		color: "from-green-400 to-blue-500"
 	},
 	{
-		name: "Merge Sort",
-		path: "/merge-sort",
-		description: "Explore the divide-and-conquer approach of merge sort.",
+		name: "Coming Soon",
+		path: "",
+		description: "New algorithms coming soon!",
 		color: "from-yellow-400 to-orange-500"
 	}
 ];
