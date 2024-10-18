@@ -15,7 +15,7 @@ export default function SocialAccounts() {
 		{
 			name: "GitHub",
 			icon: <Icons.gitHub className="w-6 h-6 text-white" />,
-			link: "https://github.com/het-tale"
+			link: "https://github.com/het-tale/algo_visualizer"
 		},
 		{
 			name: "Twitter",
